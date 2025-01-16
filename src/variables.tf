@@ -2,7 +2,7 @@
 variable "ds_resource_group_name" {
   description = "The name of the wsi ds resource group"
   type        = string
-  default = "rg-d-race-ds-test"
+  default     = "rg-d-race-ds-test"
 }
 
 variable "location" {
@@ -11,13 +11,13 @@ variable "location" {
   default     = "East US"
 }
 variable "project" {
-  type = string
+  type        = string
   description = "project name"
   default     = "MLOPS"
 }
 
 variable "environment" {
-  type = string
+  type        = string
   description = "environment"
   default     = "dev"
 }

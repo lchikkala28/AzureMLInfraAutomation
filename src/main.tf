@@ -7,7 +7,7 @@ terraform {
     # }
   }
   backend "azurerm" {
-    }
+  }
 }
 data "azurerm_client_config" "current" {}
 
@@ -32,8 +32,8 @@ resource "azurerm_resource_group" "ds_rg" {
   location = var.location
   tags = {
     environment = var.environment
-    project        = var.project
-    vendor = var.vendor
+    project     = var.project
+    vendor      = var.vendor
   }
 }
 
