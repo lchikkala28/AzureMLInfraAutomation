@@ -2,7 +2,7 @@
 variable "ds_resource_group_name" {
   description = "The name of the wsi ds resource group"
   type        = string
-  default = "rg-d-race-ds"
+  default = "rg-d-race-ds-test"
 }
 
 variable "location" {
@@ -26,3 +26,9 @@ variable "prefix" {
   description = "Prefix of the resource name"
   default     = "ml"
 }
+variable "vendor" {
+  type        = string
+  description = "vendor name"
+  default     = "RACE"
+}
+

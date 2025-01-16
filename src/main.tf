@@ -1,11 +1,15 @@
 terraform {
+  required_version = ">= 1.5.7"
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "3.108.0"
-    }
+    # azurerm = {
+    #   source  = "hashicorp/azurerm"
+    #   version = "3.108.0"
+    # }
   }
+  backend "azurerm" {
+    }
 }
+data "azurerm_client_config" "current" {}
 
 provider "azurerm" {
   # Configuration options  
@@ -27,16 +31,16 @@ resource "azurerm_resource_group" "ds_rg" {
   name     = var.ds_resource_group_name
   location = var.location
   tags = {
-    Environment = var.environment
-    Team        = "MLOPS"
-    vendor = "RACE"
+    environment = var.environment
+    project        = var.project
+    vendor = var.vendor
   }
 }
 
-module "azureml" {
-  source = "./modules/compute/AzureML"  
-  environment = var.environment
-    depends_on = [
-    azurerm_resource_group.ds_rg
-    ]
-}
+# module "azureml" {
+#   source = "./modules/compute/AzureML"  
+#   environment = var.environment
+#     depends_on = [
+#     azurerm_resource_group.ds_rg
+#     ]
+# }
