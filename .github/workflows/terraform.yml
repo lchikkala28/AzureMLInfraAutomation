@@ -2,8 +2,11 @@ name: 'Terraform'
 
 on:
   push:
-    branches: [ "main", "dev" ]
+    branches: 
+      - dev
   pull_request:
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -87,7 +90,7 @@ jobs:
     # Initialize Terraform working directory with the prod backend configuration
     - name: Terraform Init (Prod)
       working-directory: ./src
-      run: terraform init -backend-config=env/prod-backend.hcl
+      run: terraform init -backend-config=env/prd-backend.hcl
 
     # Check Terraform formatting
     - name: Terraform Format
@@ -102,6 +105,6 @@ jobs:
     # On push to "main", apply Terraform changes for prod
     - name: Terraform Apply (Prod)
       working-directory: ./src
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
       run: terraform apply -auto-approve -input=false -var-file=env/prd-terraform.tfvars
 

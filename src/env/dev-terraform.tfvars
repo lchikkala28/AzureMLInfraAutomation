@@ -19,7 +19,7 @@ pe_snet_address = ["192.168.1.0/24"]
 #Mmachine learning workspace
 appinsights_name = "ds_appinsights"
 applicationtype = "web"
-akv_name = "dsakv1603"
+akv_name = "dsakv1641" #change this name as akv has purge protection
 akv_sku_name = "premium"
 akv_purge_protection_enabled = false
 sa_name ="dssa"
