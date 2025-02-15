@@ -1,5 +1,5 @@
 
-ds_resource_group_name = "rg-d-race-ds-dev"
+ds_resource_group_name = "rg-d-race-ds-test"
 location =  "East US"
 project = "MLOps"
 environment = "dev"
@@ -19,7 +19,7 @@ pe_snet_address = ["192.168.1.0/24"]
 #Mmachine learning workspace
 appinsights_name = "ds_appinsights"
 applicationtype = "web"
-akv_name = "dsakv"
+akv_name = "dsakv1603"
 akv_sku_name = "premium"
 akv_purge_protection_enabled = false
 sa_name ="dssa"
