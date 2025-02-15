@@ -2,8 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: 
-      - dev
+    branches:       
       - main
   pull_request:
     branches:
@@ -76,6 +75,7 @@ jobs:
     defaults:
       run:
         shell: bash
+    needs: terraform_dev
 
     steps:
     # Checkout the repository to the GitHub Actions runner
