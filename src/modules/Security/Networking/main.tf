@@ -4,7 +4,8 @@ resource "azurerm_virtual_network" "vnet" {
   location            = var.location
   resource_group_name = var.resource_group_name
 }
- 
+
+
 # Create Subnet
 resource "azurerm_subnet" "subnet" {
   name                 = var.snet_name
@@ -18,4 +19,12 @@ resource "azurerm_subnet" "subnet" {
       actions = var.snet_actions
     }
   }
+}
+
+# Create Subnet
+resource "azurerm_subnet" "pe_subnet" {
+  name                 = var.pe_snet_name
+  resource_group_name  = azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = var.pe_snet_address
 }

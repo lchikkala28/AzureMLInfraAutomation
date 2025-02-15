@@ -47,6 +47,8 @@ module "network" {
   snet_delegation_name    = var.snet_delegation_name
   service_delegation_name = var.service_delegation_name
   snet_actions            = var.snet_actions
+  pe_snet_name = var.pe_snet_name
+  pe_snet_address = var.pe_snet_address
 }
 
 module "azureml" {
@@ -74,5 +76,5 @@ module "azureml" {
   ml_pe_service_connection            = var.ml_pe_service_connection
   ml_pe_is_manual_connection          = var.ml_pe_is_manual_connection
   ml_pe_subresource_names             = var.ml_pe_subresource_names
-  snet_id                             = module.network.ds_snet_id
+  snet_id                             = module.network.ds_pe_snet_id
 }

@@ -33,3 +33,11 @@ variable "snet_actions" {
   description = "List of actions"
   default = [] 
 }
+variable "pe_snet_name" {  
+  type        = string
+}
+variable "pe_snet_address" {
+  type        = list(string)
+  description = "List of subnet ip."
+  default = [] 
+}

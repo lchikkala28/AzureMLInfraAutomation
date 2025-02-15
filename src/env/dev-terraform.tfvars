@@ -13,6 +13,8 @@ snet_address = ["192.168.0.0/24"]
 snet_delegation_name = "ml-delegation"
 service_delegation_name = "Microsoft.MachineLearningServices/workspaces"
 snet_actions =  ["Microsoft.Network/virtualNetworks/subnets/join/action"]
+pe_snet_name = "ds_ml_pe_snet"
+pe_snet_address = ["192.168.1.0/24"]
 
 #Mmachine learning workspace
 applicationtype = "web"
