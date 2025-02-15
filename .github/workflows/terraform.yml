@@ -53,7 +53,7 @@ jobs:
         # On push to "dev", apply Terraform changes for prod 
     - name: Terraform Apply (dev)
       working-directory: ./src
-      run: terraform destroy -auto-approve -input=false -var-file=env/dev-terraform.tfvars
+      run: terraform apply -auto-approve -input=false -var-file=env/dev-terraform.tfvars
 
   terraform_prod:
     name: 'Terraform Prod'
@@ -100,5 +100,5 @@ jobs:
     # On push to "main", apply Terraform changes for prod
     - name: Terraform Apply (Prod)
       working-directory: ./src
-      run: terraform destroy -auto-approve -input=false -var-file=env/prd-terraform.tfvars
+      run: terraform apply -auto-approve -input=false -var-file=env/prd-terraform.tfvars
 
