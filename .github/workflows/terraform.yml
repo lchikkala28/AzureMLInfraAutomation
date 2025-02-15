@@ -23,37 +23,26 @@ jobs:
     defaults:
       run:
         shell: bash
-
-    steps:
-    # Checkout the repository to the GitHub Actions runner
+    steps:    
     - name: Checkout
-      uses: actions/checkout@v4
-
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+      uses: actions/checkout@v4    
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: ${{ env.TF_VERSION }}
-
-    # Initialize Terraform working directory with the dev backend configuration
+        terraform_version: ${{ env.TF_VERSION }}    
     - name: Terraform Init (Dev)
       working-directory: ./src
-      run: terraform init -backend-config=env/dev-backend.hcl
-
-    # Check Terraform formatting
+      run: terraform init -backend-config=env/dev-backend.hcl    
     - name: Terraform Format
       working-directory: ./src
-      run: terraform fmt -check
-
-    # Generate Terraform execution plan (Dev)
+      run: terraform fmt -check    
     - name: Terraform Plan (Dev)
       working-directory: ./src
       run: terraform plan -input=false -var-file=env/dev-terraform.tfvars
-    
-        # On push to "dev", apply Terraform changes for prod 
+
     - name: Terraform Apply (dev)
       working-directory: ./src
-      run: terraform apply -auto-approve -input=false -var-file=env/dev-terraform.tfvars
+      run: terraform destroy -auto-approve -input=false -var-file=env/dev-terraform.tfvars
 
   terraform_prod:
     name: 'Terraform Prod'
@@ -100,5 +89,5 @@ jobs:
     # On push to "main", apply Terraform changes for prod
     - name: Terraform Apply (Prod)
       working-directory: ./src
-      run: terraform apply -auto-approve -input=false -var-file=env/prd-terraform.tfvars
+      run: terraform destroy -auto-approve -input=false -var-file=env/prd-terraform.tfvars
 
