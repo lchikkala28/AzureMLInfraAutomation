@@ -26,7 +26,6 @@ provider "azurerm" {
   subscription_id = "2e5e8dc1-e03b-48a5-8ad0-9166cecca320"
 }
 
-
 resource "azurerm_resource_group" "ds_rg" {
   name     = var.ds_resource_group_name
   location = var.location
@@ -38,41 +37,41 @@ resource "azurerm_resource_group" "ds_rg" {
 }
 
 module "network" {
-  source = "./modules/Security/Networking"
-  location  = var.location
-  resource_group_name = var.ds_resource_group_name
-  vnet_name = var.vnet_name
-  snet_name = var.snet_name
-  vnet_address = var.vnet_address
-  snet_address = var.snet_address 
-  snet_delegation_name = var.snet_delegation_name 
+  source                  = "./modules/Security/Networking"
+  location                = var.location
+  resource_group_name     = var.ds_resource_group_name
+  vnet_name               = var.vnet_name
+  snet_name               = var.snet_name
+  vnet_address            = var.vnet_address
+  snet_address            = var.snet_address
+  snet_delegation_name    = var.snet_delegation_name
   service_delegation_name = var.service_delegation_name
 }
 
 module "azureml" {
-  source = "./modules/compute/AzureML"  
+  source      = "./modules/compute/AzureML"
   environment = var.environment
-    depends_on = [
+  depends_on = [
     azurerm_resource_group.ds_rg
-    ]
-  applicationtype =var.applicationtype
-  akv_sku_name = var.akv_sku_name
-  akv_purge_protection_enabled = var.akv_purge_protection_enabled
-  sa_account_tier = var.sa_account_tier
-  sa_account_replication_type = var.sa_account_replication_type
-  sa_allow_nested_items_to_be_public = var.sa_allow_nested_items_to_be_public
-  container_registry_sku = var.container_registry_sku
-  container_registry_admin_enabled = var.container_registry_admin_enabled
+  ]
+  applicationtype                     = var.applicationtype
+  akv_sku_name                        = var.akv_sku_name
+  akv_purge_protection_enabled        = var.akv_purge_protection_enabled
+  sa_account_tier                     = var.sa_account_tier
+  sa_account_replication_type         = var.sa_account_replication_type
+  sa_allow_nested_items_to_be_public  = var.sa_allow_nested_items_to_be_public
+  container_registry_sku              = var.container_registry_sku
+  container_registry_admin_enabled    = var.container_registry_admin_enabled
   ml_ws_public_network_access_enabled = var.ml_ws_public_network_access_enabled
-  ml_compute_cluster = var.ml_compute_cluster
-  ml_vm_priority = var.ml_vm_priority
-  ml_vm_size = var.ml_vm_size
-  ml_vm_min_node_count = var.ml_vm_min_node_count
-  ml_vm_max_node_count = var.ml_vm_max_node_count
-  ml_vm_scale_down_ideal_time = var.ml_vm_scale_down_ideal_time
-  ml_pe_name = var.ml_pe_name
-  ml_pe_service_connection = var.ml_pe_service_connection
-  ml_pe_is_manual_connection = var.ml_pe_is_manual_connection
-  ml_pe_subresource_names = var.ml_pe_subresource_names
-  snet_id = module.network.ds_snet_id
+  ml_compute_cluster                  = var.ml_compute_cluster
+  ml_vm_priority                      = var.ml_vm_priority
+  ml_vm_size                          = var.ml_vm_size
+  ml_vm_min_node_count                = var.ml_vm_min_node_count
+  ml_vm_max_node_count                = var.ml_vm_max_node_count
+  ml_vm_scale_down_ideal_time         = var.ml_vm_scale_down_ideal_time
+  ml_pe_name                          = var.ml_pe_name
+  ml_pe_service_connection            = var.ml_pe_service_connection
+  ml_pe_is_manual_connection          = var.ml_pe_is_manual_connection
+  ml_pe_subresource_names             = var.ml_pe_subresource_names
+  snet_id                             = module.network.ds_snet_id
 }
