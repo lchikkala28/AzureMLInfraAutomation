@@ -68,7 +68,7 @@ variable "pe_snet_address" {
 # ML workspace
 #app insights
 variable "appinsights_name" {
-  type = string
+  type        = string
   description = "azure app insights name"
 }
 variable "applicationtype" {
@@ -77,7 +77,7 @@ variable "applicationtype" {
 }
 #akv
 variable "akv_name" {
-  type = string
+  type        = string
   description = "azure key vault name"
 }
 variable "akv_sku_name" {
@@ -90,7 +90,7 @@ variable "akv_purge_protection_enabled" {
 }
 #sa
 variable "sa_name" {
-  type = string
+  type        = string
   description = "azure storage account name"
 }
 variable "sa_account_tier" {
@@ -106,7 +106,7 @@ variable "sa_allow_nested_items_to_be_public" {
   description = "azure sa allow nested items to be public"
 }
 variable "containerregistry_name" {
-  type = string
+  type        = string
   description = "azure container registry name"
 }
 variable "container_registry_sku" {
@@ -118,7 +118,7 @@ variable "container_registry_admin_enabled" {
   description = "azure container registery admin enable"
 }
 variable "mlworkspace_name" {
-  type = string
+  type        = string
   description = "azure workspace name"
 }
 variable "ml_ws_public_network_access_enabled" {
