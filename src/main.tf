@@ -47,8 +47,8 @@ module "network" {
   snet_delegation_name    = var.snet_delegation_name
   service_delegation_name = var.service_delegation_name
   snet_actions            = var.snet_actions
-  pe_snet_name = var.pe_snet_name
-  pe_snet_address = var.pe_snet_address
+  pe_snet_name            = var.pe_snet_name
+  pe_snet_address         = var.pe_snet_address
 }
 
 module "azureml" {
