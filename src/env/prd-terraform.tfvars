@@ -1,5 +1,5 @@
 
-ds_resource_group_name = "rg-race-ds-test"
+ds_resource_group_name = "rg-prod-race-ds"
 location =  "East US"
 project = "MLOps"
 environment = "prd"
