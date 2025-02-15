@@ -49,6 +49,9 @@ module "network" {
   snet_actions            = var.snet_actions
   pe_snet_name            = var.pe_snet_name
   pe_snet_address         = var.pe_snet_address
+  depends_on = [
+    azurerm_resource_group.ds_rg
+  ]
 }
 
 module "azureml" {
