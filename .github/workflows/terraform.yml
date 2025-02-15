@@ -76,8 +76,6 @@ jobs:
     defaults:
       run:
         shell: bash
-    
-    needs: terraform_dev
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -108,6 +106,6 @@ jobs:
     # On push to "main", apply Terraform changes for prod
     - name: Terraform Apply (Prod)
       working-directory: ./src
-      if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+      if: github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve -input=false -var-file=env/prd-terraform.tfvars
 
