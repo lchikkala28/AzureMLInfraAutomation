@@ -7,7 +7,7 @@ resource "azurerm_application_insights" "mlappinsight" {
 }
 
 resource "azurerm_key_vault" "mlakv" {
-  name                     = "${var.environment}-${var.prefix}-${var.akv_name}-${random_pet.prefix.id}"
+  name                     = "${var.environment}-${var.prefix}-${var.akv_name}"
   location                 = var.location
   resource_group_name      = var.ds_resource_group_name
   tenant_id                = data.azurerm_client_config.current.tenant_id
