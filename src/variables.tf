@@ -52,6 +52,11 @@ variable "snet_address" {
 variable "snet_delegation_name" {
   type = string
 }
+variable "snet_actions" {
+  type        = list(string)
+  description = "List of actions"
+  default = [] 
+}
 # ML workspace
 variable "applicationtype" {
   type        = string
