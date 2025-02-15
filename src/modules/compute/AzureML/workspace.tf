@@ -1,43 +1,43 @@
 # Dependent resources for Azure Machine Learning
-resource "azurerm_application_insights" "default" {
-  name                = "${var.environment}-${random_pet.prefix.id}-appi"
+resource "azurerm_application_insights" "mlappinsight" {
+  name                = "${var.environment}-${var.prefix}-${var.appinsights_name}-${random_pet.prefix.id}"
   location            = var.location
   resource_group_name = var.ds_resource_group_name
   application_type    = var.applicationtype
 }
 
 resource "azurerm_key_vault" "mlakv" {
-  name                     = "${var.environment}-${var.prefix}-${random_integer.suffix.result}kv"
+  name                     = "${var.environment}-${var.prefix}-${var.akv_name}-${random_pet.prefix.id}"
   location                 = var.location
-  resource_group_name      =  var.ds_resource_group_name
+  resource_group_name      = var.ds_resource_group_name
   tenant_id                = data.azurerm_client_config.current.tenant_id
   sku_name                 = var.akv_sku_name
   purge_protection_enabled = var.akv_purge_protection_enabled
 }
 
 resource "azurerm_storage_account" "mlsa" {
-  name                            = "${var.environment}${var.prefix}${random_integer.suffix.result}sa"
+  name                            = "${var.environment}${var.prefix}${var.sa_name}${random_integer.suffix.result}"
   location                        = var.location
-  resource_group_name             =  var.ds_resource_group_name
+  resource_group_name             = var.ds_resource_group_name
   account_tier                    = var.sa_account_tier
   account_replication_type        = var.sa_account_replication_type
   allow_nested_items_to_be_public = var.sa_allow_nested_items_to_be_public
 }
 
 resource "azurerm_container_registry" "mlconregistry" {
-  name                = "${var.environment}${var.prefix}${random_integer.suffix.result}cr"
+  name                = "${var.environment}${var.prefix}${var.containerregistry_name}${random_integer.suffix.result}"
   location            = var.location
-  resource_group_name =  var.ds_resource_group_name
+  resource_group_name = var.ds_resource_group_name
   sku                 = var.container_registry_sku
   admin_enabled       = var.container_registry_admin_enabled
 }
 
 # Machine Learning workspace
 resource "azurerm_machine_learning_workspace" "mlworkspace" {
-  name                          = "${var.environment}-${random_pet.prefix.id}-mlw"
+  name                          = "${var.environment}-${var.prefix}-${var.mlworkspace_name}-${random_pet.prefix.id}"
   location                      = var.location
   resource_group_name           = var.ds_resource_group_name
-  application_insights_id       = azurerm_application_insights.default.id
+  application_insights_id       = azurerm_application_insights.mlappinsight.id
   key_vault_id                  = azurerm_key_vault.mlakv.id
   storage_account_id            = azurerm_storage_account.mlsa.id
   container_registry_id         = azurerm_container_registry.mlconregistry.id

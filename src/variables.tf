@@ -66,9 +66,19 @@ variable "pe_snet_address" {
   default     = []
 }
 # ML workspace
+#app insights
+variable "appinsights_name" {
+  type = string
+  description = "azure app insights name"
+}
 variable "applicationtype" {
   type        = string
   description = "application type"
+}
+#akv
+variable "akv_name" {
+  type = string
+  description = "azure key vault name"
 }
 variable "akv_sku_name" {
   type        = string
@@ -77,6 +87,11 @@ variable "akv_sku_name" {
 variable "akv_purge_protection_enabled" {
   type        = bool
   description = "azure purge protection enabled"
+}
+#sa
+variable "sa_name" {
+  type = string
+  description = "azure storage account name"
 }
 variable "sa_account_tier" {
   type        = string
@@ -90,6 +105,10 @@ variable "sa_allow_nested_items_to_be_public" {
   type        = bool
   description = "azure sa allow nested items to be public"
 }
+variable "containerregistry_name" {
+  type = string
+  description = "azure container registry name"
+}
 variable "container_registry_sku" {
   type        = string
   description = "azure container registry sku name"
@@ -97,6 +116,10 @@ variable "container_registry_sku" {
 variable "container_registry_admin_enabled" {
   type        = bool
   description = "azure container registery admin enable"
+}
+variable "mlworkspace_name" {
+  type = string
+  description = "azure workspace name"
 }
 variable "ml_ws_public_network_access_enabled" {
   type        = bool

@@ -17,14 +17,19 @@ pe_snet_name = "ds_ml_pe_snet"
 pe_snet_address = ["192.168.1.0/24"]
 
 #Mmachine learning workspace
+appinsights_name = "ds_appinsights"
 applicationtype = "web"
+akv_name = "ds_akv"
 akv_sku_name = "premium"
 akv_purge_protection_enabled = false
+sa_name ="dssa"
 sa_account_tier = "Standard"
 sa_account_replication_type = "GRS"
 sa_allow_nested_items_to_be_public = false
+containerregistry_name = "ds_conreg"
 container_registry_sku = "Premium"
 container_registry_admin_enabled = true
+mlworkspace_name = "dsws"
 ml_ws_public_network_access_enabled = true
 ml_compute_cluster = "cpu-cluster"
 ml_vm_priority = "Dedicated"
