@@ -52,11 +52,11 @@ module "network" {
 }
 
 module "azureml" {
-  source      = "./modules/compute/AzureML"
-  environment = var.environment
-  depends_on = [
-    azurerm_resource_group.ds_rg
-  ]
+  source                              = "./modules/compute/AzureML"
+  environment                         = var.environment
+  location                            = var.location
+  ds_resource_group_name              = var.ds_resource_group_name
+  prefix                              = var.prefix
   applicationtype                     = var.applicationtype
   akv_sku_name                        = var.akv_sku_name
   akv_purge_protection_enabled        = var.akv_purge_protection_enabled
@@ -77,4 +77,8 @@ module "azureml" {
   ml_pe_is_manual_connection          = var.ml_pe_is_manual_connection
   ml_pe_subresource_names             = var.ml_pe_subresource_names
   snet_id                             = module.network.ds_pe_snet_id
+  depends_on = [
+    azurerm_resource_group.ds_rg,
+    module.network
+  ]
 }
