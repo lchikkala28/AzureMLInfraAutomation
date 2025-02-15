@@ -2,8 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branches: 
-      - dev
+    branches:       
       - main
   pull_request:
     branches:
@@ -59,7 +58,7 @@ jobs:
     - name: Terraform Apply (dev)
       working-directory: ./src
       if: github.ref == 'refs/heads/dev' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false -var-file=env/dev-terraform.tfvars
+      run: terraform destroy -auto-approve -input=false -var-file=env/dev-terraform.tfvars
 
   terraform_prod:
     name: 'Terraform Prod'
@@ -76,6 +75,7 @@ jobs:
     defaults:
       run:
         shell: bash
+    needs: terraform_dev
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -107,5 +107,5 @@ jobs:
     - name: Terraform Apply (Prod)
       working-directory: ./src
       if: github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve -input=false -var-file=env/prd-terraform.tfvars
+      run: terraform destroy -auto-approve -input=false -var-file=env/prd-terraform.tfvars
 
