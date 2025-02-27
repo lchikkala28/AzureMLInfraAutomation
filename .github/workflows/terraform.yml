@@ -45,7 +45,7 @@ jobs:
     - name: Terraform Apply (dev)
     #apply Terraform changes for dev
       working-directory: ./src
-      run: terraform apply -auto-approve -input=false -var-file=env/dev-terraform.tfvars
+      run: terraform destroy -auto-approve -input=false -var-file=env/dev-terraform.tfvars
 
   terraform_prod:
     name: 'Terraform Prod'
@@ -57,18 +57,16 @@ jobs:
       TF_VERSION: 1.5.7
     runs-on: ubuntu-latest
     environment: production
-
     defaults:
       run:
         shell: bash
     needs: terraform_dev
-
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v4
 
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
+    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
       with:
