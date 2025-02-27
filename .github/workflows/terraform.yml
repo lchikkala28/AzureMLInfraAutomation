@@ -30,17 +30,17 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: ${{ env.TF_VERSION }}    
-    - name: Terraform Init (Dev)
+    - name: Terraform Init (dev)
       working-directory: ./src
       run: terraform init -backend-config=env/dev-backend.hcl    
     - name: Terraform Format
       working-directory: ./src
       run: terraform fmt -check    
-    - name: Terraform Plan (Dev)
+    - name: Terraform Plan (dev)
       working-directory: ./src
       run: terraform plan -input=false -var-file=env/dev-terraform.tfvars
-
     - name: Terraform Apply (dev)
+    # On push to "main", apply Terraform changes for dev
       working-directory: ./src
       run: terraform apply -auto-approve -input=false -var-file=env/dev-terraform.tfvars
 
