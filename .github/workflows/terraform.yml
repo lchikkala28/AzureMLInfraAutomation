@@ -81,7 +81,7 @@ jobs:
       working-directory: ./src
       run: terraform fmt -check
 
-    # Generate Terraform execution plan (Prod)
+    # Generate Terraform execution plan (Production)
     - name: Terraform Plan (Prod)
       working-directory: ./src
       run: terraform plan -input=false -var-file=env/prd-terraform.tfvars
